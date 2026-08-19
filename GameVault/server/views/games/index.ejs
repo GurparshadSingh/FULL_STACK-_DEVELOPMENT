@@ -22,6 +22,7 @@
         .navbar {
             background: #111827;
             box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+            min-height: 100px;
         }
 
 
@@ -150,6 +151,71 @@
             color: black;
 
         }
+
+        .search-bar {
+
+            background: #010101;
+            background: linear-gradient(90deg,
+                    #340361,
+                    #064b57);
+            border-color: azure;
+            border-width: 2px;
+            transition: 0.3s;
+            color: aliceblue;
+        }
+
+        .search-bar:hover {
+            box-shadow:
+                0 0 25px rgba(168, 85, 247, 0.5);
+        }
+
+        .search-btn {
+            color: azure;
+            background: #010101;
+            background: linear-gradient(90deg,
+                    #340361,
+                    #064b57);
+            border-color: azure;
+            border-width: 2px;
+            transition: 0.3s;
+            color: aliceblue;
+        }
+
+        .form-control {
+            background-color: #1e1e1e;
+            color: white;
+            border-color: #555;
+        }
+
+        .form-control::placeholder {
+            color: #aaa;
+        }
+
+        .form-control:focus {
+            background-color: #1e1e1e;
+            color: white;
+            border-color: #888;
+            box-shadow: none;
+        }
+
+
+        .cursor {
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
     </style>
 
     <!-- Navbar -->
@@ -159,46 +225,75 @@
             <a class="navbar-brand brand" href="/api/games">🎮 GameVault</a>
 
 
+            <% if (isLoggedIn) { %>
+
+                <div id="userLinks">
+
+                    <a href="/api/users/wishlist" class="btn btn-outline-light">
+                        ❤️ Wishlist
+                    </a>
+
+                    <button id="logoutBtn" class="btn btn-danger ms-2">
+                        Logout
+                    </button>
+
+                    <button id="ProfileBtn" class="btn btn-outline-light ms-2">
+                        Profile
+                    </button>
+
+                </div>
 
 
-            <div id="userLinks" style="display:none;">
-
-                <a href="/api/users/wishlist" class="btn btn-outline-light">
-                    ❤️ Wishlist
-                </a>
-
-                <button id="logoutBtn" class="btn btn-danger ms-2">
-                    Logout
-                </button>
-
-            </div>
+                <% } else { %>
 
 
-            <div>
-                <a href="/api/games" class="btn btn-outline-light">
-                    Games
-                </a>
+                    <div id="guestLinks">
 
-                <a href="/api/games/new" class="btn btn-primary ms-2">
-                    + Add Game
-                </a>
+                        <a href="/api/users/login" class="btn btn-outline-light">
+                            Login
+                        </a>
+
+                        <a href="/api/users/register" class="btn btn-primary ms-2">
+                            Register
+                        </a>
+
+                    </div>
+
+                    <% } %>
 
 
-            </div>
+                        <div>
+                            <a href="/api/games" class="btn btn-outline-light">
+                                Games
+                            </a>
+
+                            <a href="/api/games/new" class="btn btn-primary ms-2">
+                                + Add Game
+                            </a>
 
 
-            <div id="guestLinks">
+                        </div>
 
-                <a href="/api/users/login" class="btn btn-outline-light">
-                    Login
-                </a>
+                        <form class="form-inline d-flex gap-3" action="/api/games/search" method="GET">
+                            <input class="form-control mr-sm-2 search-bar" type="search" name="query"
+                                placeholder="Search game" aria-label="Search">
+                            <button class="btn btn-outline-primary search-btn" type="submit">Search</button>
+                        </form>
 
-                <a href="/api/users/register" class="btn btn-primary ms-2">
-                    Register
-                </a>
 
-            </div>
 
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Sort by genre
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/api/games/genre?genre=Action">Action</a></li>
+                                <li><a class="dropdown-item" href="/api/games/genre?genre=Racing">Racing</a></li>
+                                <li><a class="dropdown-item" href="/api/games/genre?genre=FPS">FPS</a></li>
+                                <li><a class="dropdown-item" href="/api/games/genre?genre=Adventure">Adventure</a></li>
+                            </ul>
+                        </div>
 
         </div>
     </nav>
@@ -206,8 +301,11 @@
 
     <section class="hero">
         <div>
-            <h1>
+            <!-- <h1>
                 Discover Your Next Adventure
+            </h1> -->
+            <h1>
+                <span id="typing-text"></span> <span class="cursor">|</span>
             </h1>
 
             <p class="fs-5">
@@ -267,9 +365,16 @@
                                 </span>
 
                             </div>
+
+
                             <a href="/api/games/<%= game._id %>" class="btn btn-game w-100 mt-3">
                                 View Details
                             </a>
+                            <button class="btn btn-outline-danger btn  w-100 mt-3 wish-btn"
+                                onclick="toggleWishList(this,'<%= game._id %>')">
+                                🤍 Add to Wishlist
+                            </button>
+
 
                         </div>
                     </div>
@@ -287,18 +392,51 @@
 
     <script>
 
-        const token = localStorage.getItem("token");
-        const guestLinks = document.getElementById("guestLinks");
-        const userLinks = document.getElementById("userLinks");
 
-        if (token) {
-            guestLinks.style.display = "none";
-            userLinks.style.display = "block";
+        async function toggleWishList(button, gameId) {
+            const isWishlisted = button.dataset.wishlisted === "true";
+
+            try {
+                let response;
+
+                if (!isWishlisted) {
+                    response = await fetch(`/api/users/wishlist/${gameId}`, {
+                        method: "POST"
+                    })
+                } else {
+                    response = await fetch(`/api/users/wishlist/${gameId}`, {
+                        method: "DELETE"
+                    })
+                }
+
+                const data = await response.json();
+                if (data.success) {
+
+                    if (!isWishlisted) {
+
+                        button.innerHTML = "❤️ In Wishlist";
+                        button.dataset.wishlisted = "true";
+
+                    } else {
+
+                        button.innerHTML = "🤍 Add to Wishlist";
+                        button.dataset.wishlisted = "false";
+
+                    }
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                alert("something went wrong", err);
+            }
+
         }
-        else {
-            guestLinks.style.display = "block";
-            userLinks.style.display = "none";
-        }
+
+
+
+
+
+
 
         logoutBtn.addEventListener("click", async () => {
 
@@ -312,7 +450,31 @@
 
         });
 
+        ProfileBtn.addEventListener("click", async () => {
+
+            window.location.href = "/api/users/profile";
+
+        });
+
+
+
+
+
+        const text = "Discover Your Next Adventure";
+        const typingText = document.getElementById("typing-text");
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                typingText.textContent += text[index];
+                index++;
+                setTimeout(typeText, 80);
+            }
+        }
+        typeText();
+
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

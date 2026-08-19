@@ -87,7 +87,7 @@ exports.loginUser = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Login Successful",
-            
+
         });
     } catch (err) {
         res.status(500).json({
@@ -141,4 +141,39 @@ exports.getWishlist = async (req, res) => {
     res.render("wishlist_temp", { games: user.wishlist });
 
 }
+
+exports.removeFromWishlist = async (req, res) => {
+    try {
+        const { gameId } = req.params;
+        await User.findByIdAndUpdate(req.user.id, {
+            $pull: {
+                wishlist: gameId
+            }
+        });
+
+        res.status(200).json({
+            success: true,
+            message: "Game removed from wishlist"
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+    }
+}
+
+exports.getProfile = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        res.render("users/profile", { user });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+    }
+}
+
+
 

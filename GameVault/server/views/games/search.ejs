@@ -19,9 +19,15 @@
         .navbar {
             background: #111827;
             box-shadow: 0 0 20px rgba(124, 58, 237, .35);
+            min-height: 100px;
         }
 
         .brand {
+            color: #a855f7;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        .brand:hover{
             color: #a855f7;
             font-size: 28px;
             font-weight: 800;
@@ -118,7 +124,7 @@
     </style>
 
 
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg ">
 
         <div class="container">
             <a href="/api/games" class="brand navbar-brand">
@@ -135,13 +141,13 @@
     </nav>
 
     <div class="container my-5">
-        <h1>❤️ My Wishlist</h1>
+        <h1 class="my-3">❤️ My Search</h1>
 
         <% if(games.length===0){ %>
 
             <div class="empty">
 
-                <h2>Your Wishlist is Empty 😢</h2>
+                <h2>Cant find what you searched for 😢</h2>
 
                 <p class="text-secondary">
                     Start exploring games and add your favourites.
@@ -196,9 +202,7 @@
                                             View Details
                                         </a>
 
-                                        <button class="btn btn-remove" onclick="removeWishlist('<%= game._id %>')">
-                                            Remove ❤️
-                                        </button>
+
                                     </div>
 
                                 </div>
@@ -210,24 +214,6 @@
                 <% } %>
     </div>
 
-    <script>
-
-
-        async function removeWishlist(gameId) {
-
-
-            const response = await fetch(`/api/users/wishlist/${gameId}`, {
-                method: "DELETE",
-
-            });
-
-            const data = await response.json();
-            alert(data.message);
-            location.reload();
-
-        }
-
-    </script>
 </body>
 
 </html>
