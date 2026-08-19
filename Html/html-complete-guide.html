@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!-- 
+    ==========================================================
+    HTML COMPLETE GUIDE - Ek hi file me sab kuch (with comments)
+    ==========================================================
+    Topics covered:
+    1. Boilerplate code
+    2. Tags, Elements, Attributes
+    3. Headings & Paragraph
+    4. Comments
+    5. HTML Case Sensitivity
+    6. Inline vs Block elements
+    7. div, span, hr, br, sup, sub
+    8. Semantic Markup / Semantic Tags
+    9. Lists (ul, ol, dl)
+    10. Anchor element (a)
+    11. Image element (img)
+    12. More HTML tags
+    13. HTML Entities
+    14. Emmet shortcuts (as comments, since Emmet works in editor)
+    15. Forms: input, placeholder, label
+    16. Button element
+    17. name attribute
+    18. checkbox, radio, select, range, textarea
+    ==========================================================
+-->
+
+<!-- 
+    ===== 1. BOILERPLATE CODE =====
+    Har HTML document is basic structure se start hota hai.
+    <!DOCTYPE html> browser ko batata hai ki ye HTML5 document hai.
+-->
+<html lang="en"> <!-- html tag root element hai, lang attribute language batata hai -->
+
+<head>
+    <!-- head tag me meta info hoti hai, ye screen pe DIKHTI NAHI -->
+    <meta charset="UTF-8"> <!-- character encoding set karta hai -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- mobile responsive ke liye -->
+    <title>HTML Complete Guide</title> <!-- browser tab me title dikhta hai -->
+
+    <!-- 
+        ===== EMMET SHORTCUTS (reference, editor me kaam karte hain) =====
+        ! + Tab               => pura boilerplate bana deta hai
+        div.container         => <div class="container"></div>
+        ul>li*5                => 5 li ke sath ul
+        a[href="#"]{Click}     => <a href="#">Click</a>
+        p*3                     => 3 paragraph tags
+        div#main>header+section+footer => nested structure
+        img[src alt]           => <img src="" alt="">
+        (ye sab VS Code jaise editor me expand hote hain, browser me nahi)
+    -->
+
+    <style>
+        /* thoda basic styling taaki example clearly dikhe */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        section {
+            border: 1px solid #ccc;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- body tag ke andar wo sab content hota hai jo browser pe DIKHTA hai -->
+
+    <h1>HTML Complete Guide (with Examples)</h1>
+
+    <!-- 
+        ===== 2. COMMENTS =====
+        Comments browser pe render nahi hote, sirf code padhne walo ke liye hote hain.
+        Syntax: <!-- comment yaha likho -- >
+    -->
+    <section>
+        <h2>2. Comments</h2>
+        <!-- Ye ek comment hai, ye page pe nazar nahi aayega -->
+        <p>Upar ek comment likha hai jo screen par dikh nahi raha (view source karke dekho).</p>
+    </section>
+
+    <!-- 
+        ===== 3. HEADINGS & PARAGRAPH =====
+        h1 se h6 tak headings hoti hain, h1 sabse important/bada, h6 sabse chota.
+        p tag paragraph ke liye use hota hai.
+    -->
+    <section>
+        <h2>3. Headings &amp; Paragraph</h2>
+        <h1>This is h1 (Biggest)</h1>
+        <h2>This is h2</h2>
+        <h3>This is h3</h3>
+        <h4>This is h4</h4>
+        <h5>This is h5</h5>
+        <h6>This is h6 (Smallest)</h6>
+        <p>Ye ek paragraph hai. Paragraph tag block-level element hota hai aur apne aap ek naye line se start hota hai.
+        </p>
+    </section>
+
+    <!-- 
+        ===== 4. TAGS, ELEMENTS & ATTRIBUTES =====
+        Tag: <p> ye opening tag hai, </p> closing tag hai.
+        Element: opening tag + content + closing tag = element
+        Attribute: tag ke andar extra info deta hai, jaise id, class, src, href
+        Syntax: <tagname attribute="value">content</tagname>
+    -->
+    <section>
+        <h2>4. Tags, Elements &amp; Attributes</h2>
+        <p id="para1" class="highlight" title="Ye ek attribute example hai">
+            Is paragraph me id, class aur title - teeno attributes lagaye gaye hain.
+        </p>
+        <!-- id  -> unique identifier, ek page me ek hi baar use hona chahiye -->
+        <!-- class -> multiple elements pe repeat ho sakta hai, styling/JS ke liye -->
+        <!-- title -> hover karne pe tooltip dikhata hai -->
+    </section>
+
+    <!-- 
+        ===== 5. IS HTML CASE SENSITIVE? =====
+        HTML tags case-insensitive hote hain.
+        <P>, <p>, <P> - sab same kaam karte hain (but lowercase best practice hai).
+        LEKIN attribute VALUES (jaise class names, id) case-sensitive ho sakte hain
+        jab CSS/JS se compare kiya jaye.
+    -->
+    <section>
+        <h2>5. HTML Case Sensitivity</h2>
+        <P>Ye paragraph capital P se likha hai, phir bhi normal render hoga.</P>
+        <p>HTML tags case-insensitive hain, lekin convention lowercase likhne ka hai.</p>
+    </section>
+
+    <!-- 
+        ===== 6. INLINE vs BLOCK ELEMENTS =====
+        Block elements: apni khud ki new line lete hain, full width lete hain.
+        Example: div, p, h1-h6, ul, li, section
+        
+        Inline elements: sirf jitni content hai utni hi width lete hain, same line pe rehte hain.
+        Example: span, a, b, i, strong, em, sup, sub
+    -->
+    <section>
+        <h2>6. Inline vs Block Elements</h2>
+        <div style="background:#eef;">Ye ek block element hai (div) - full width leta hai</div>
+        <span style="background:#fee;">Ye inline span hai</span>
+        <span style="background:#efe;">Ye dusra inline span hai (same line pe)</span>
+    </section>
+
+    <!-- 
+        ===== 7. div, span, hr, br, sup, sub =====
+        div  -> block level generic container, layout banane ke liye
+        span -> inline generic container, chote portion ko style karne ke liye
+        hr   -> horizontal line/rule, thematic break dikhata hai
+        br   -> line break, text ko next line pe le jata hai (self-closing tag)
+        sup  -> superscript text (upar chota) jaise x^2
+        sub  -> subscript text (niche chota) jaise H2O
+    -->
+    <section>
+        <h2>7. div, span, hr, br, sup, sub</h2>
+        <div>
+            Ye <span style="color:red;">span ke andar red text</span> hai div ke andar.
+        </div>
+        <hr> <!-- horizontal line -->
+        <p>Pehli line <br> Doosri line (br se break kiya)</p>
+        <p>Einstein's equation: E = mc<sup>2</sup></p> <!-- superscript -->
+        <p>Water formula: H<sub>2</sub>O</p> <!-- subscript -->
+    </section>
+
+    <!-- 
+        ===== 8. SEMANTIC MARKUP / SEMANTIC TAGS =====
+        Semantic tags apne naam se hi apna matlab/purpose batate hain.
+        Ye SEO aur accessibility ke liye better hote hain compared to plain div.
+        Common semantic tags: header, nav, main, article, section, aside, footer, figure, figcaption
+    -->
+    <section>
+        <h2>8. Semantic Tags</h2>
+        <header style="background:#ddd;padding:5px;">
+            <h3>Header Section</h3> <!-- top part, logo/title ke liye -->
+        </header>
+        <nav style="background:#dfd;padding:5px;">
+            <a href="#">Home</a> | <a href="#">About</a> | <a href="#">Contact</a> <!-- navigation links -->
+        </nav>
+        <main style="background:#ffd;padding:5px;">
+            <article>
+                <h4>Article Title</h4>
+                <p>Article ek independent, self-contained content hota hai (jaise blog post).</p>
+            </article>
+            <aside style="background:#fdf;padding:5px;">
+                Aside side-content ke liye hota hai (jaise sidebar, related links).
+            </aside>
+        </main>
+        <footer style="background:#ddf;padding:5px;">
+            <p>&copy; 2026 Footer Section - copyright, contact info yaha hoti hai</p>
+        </footer>
+    </section>
+
+    <!-- 
+        ===== 9. LISTS IN HTML =====
+        ul -> unordered list (bullets)
+        ol -> ordered list (numbers)
+        li -> list item (dono ke andar use hota hai)
+        dl -> description list, dt (term) aur dd (description) ke sath
+    -->
+    <section>
+        <h2>9. Lists in HTML</h2>
+
+        <h4>Unordered List (ul)</h4>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+
+        <h4>Ordered List (ol)</h4>
+        <ol>
+            <li>Step 1: Learn HTML</li>
+            <li>Step 2: Learn CSS</li>
+            <li>Step 3: Learn JavaScript</li>
+        </ol>
+
+        <h4>Description List (dl)</h4>
+        <dl>
+            <dt>HTML</dt>
+            <dd>Structure of webpage banata hai</dd>
+            <dt>CSS</dt>
+            <dd>Webpage ko style karta hai</dd>
+        </dl>
+    </section>
+
+    <!-- 
+        ===== 10. ANCHOR ELEMENT (a) =====
+        Links banane ke liye use hota hai.
+        href -> kaha jana hai (URL)
+        target="_blank" -> naye tab me khulega
+        target="_self" -> same tab me khulega (default)
+    -->
+    <section>
+        <h2>10. Anchor Element</h2>
+        <a href="https://www.google.com" target="_blank">Google pe jao (new tab)</a><br>
+        <a href="https://www.wikipedia.org" target="_self">Wikipedia pe jao (same tab)</a><br>
+        <a href="#top">Page ke top pe jao (same page link)</a><br>
+        <a href="mailto:someone@example.com">Email bhejo</a><br>
+        <a href="tel:+911234567890">Call karo</a>
+    </section>
+
+    <!-- 
+        ===== 11. IMAGE ELEMENT (img) =====
+        img self-closing tag hai.
+        src -> image ka path/URL
+        alt -> agar image load na ho to alternative text (accessibility ke liye bhi zaroori)
+        width, height -> size control karne ke liye
+    -->
+    <section>
+        <h2>11. Image Element</h2>
+        <img src="https://via.placeholder.com/150" alt="Placeholder Image" width="150" height="150">
+        <p>Upar ek image hai jiska src placeholder URL hai aur alt text define kiya gaya hai.</p>
+    </section>
+
+    <!-- 
+        ===== 12. MORE HTML TAGS =====
+        strong -> important text (bold + semantic meaning)
+        em     -> emphasized text (italic + semantic meaning)
+        b, i   -> sirf visual bold/italic (no extra meaning)
+        blockquote -> quotation ke liye
+        code   -> code snippet dikhane ke liye
+        pre    -> preformatted text (spaces/line breaks preserve karta hai)
+        mark   -> highlight text
+        small  -> chota text
+        table  -> data tabular form me dikhane ke liye
+    -->
+    <section>
+        <h2>12. More HTML Tags</h2>
+        <p><strong>Ye important text hai (strong)</strong></p>
+        <p><em>Ye emphasized text hai (em)</em></p>
+        <p><b>Bold text</b> aur <i>Italic text</i></p>
+        <blockquote>"Ye ek quotation hai" - blockquote tag</blockquote>
+        <p>Inline code: <code>let x = 10;</code></p>
+        <pre>
+Ye pre tag hai
+    jo spacing aur
+        line breaks ko as-it-is dikhata hai
+        </pre>
+        <p><mark>Ye highlighted text hai</mark></p>
+        <p><small>Ye chota text hai</small></p>
+<link rel="stylesheet" href="style.css">
+        <table border="3" cellpadding="5">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>Raj</td>
+                <td>21</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 
+        ===== 13. HTML ENTITIES =====
+        Special characters likhne ke liye jo HTML me reserved hain.
+        &lt;   -> <
+        &gt;   -> >
+        &amp;  -> &
+        &copy; -> ©
+        &nbsp; -> non-breaking space
+        &quot; -> "
+    -->
+    <section>
+        <h2>13. HTML Entities</h2>
+        <p>Less than: &lt; Greater than: &gt; Ampersand: &amp;</p>
+        <p>Copyright: &copy; Registered: &reg; Rupee: &#8377;</p>
+        <p>Non-breaking&nbsp;space example.</p>
+    </section>
+
+    <!-- 
+        ===== 14. FORMS: input, placeholder, label =====
+        form tag saare input elements ko wrap karta hai.
+        label -> input ko describe karta hai, "for" attribute input ki id se match hona chahiye
+        placeholder -> input ke andar hint text dikhata hai
+    -->
+    <section>
+        <h2>14. Forms - Input, Placeholder, Label</h2>
+        <form action="#" method="post">
+
+            <!-- Text input with label and placeholder -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Apna naam likho"><br><br>
+
+            <!-- 
+                ===== 15. name ATTRIBUTE =====
+                name attribute form data ko server pe identify karne ke liye use hota hai.
+                Jab form submit hota hai, data "name=value" pairs me jata hai.
+            -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="user_email" placeholder="you@example.com"><br><br>
+
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="user_password" placeholder="Password likho"><br><br>
+
+            <!-- 
+                ===== 16. CHECKBOX =====
+                Multiple options select karne ke liye (ek se zyada choose kar sakte ho)
+            -->
+
+            <style>
+                .chk:checked+label {
+                    background-color: red;
+                }
+
+                .notchk:checked+label {
+                    background-color: green;
+                }
+            </style>
+
+            <p>Checkbox (multiple select):</p>
+            <input type="checkbox" id="html" name="skills" value="HTML" class="chk">
+            <label for="html">HTML</label>
+
+            <input type="checkbox" id="css" name="skills" value="CSS" class="chk">
+            <label for="css">CSS</label>
+
+            <input type="checkbox" id="js" name="skills" value="JavaScript" class="notchk">
+            <label for="js">JavaScript</label>
+            <br><br>
+
+            <!-- 
+                ===== 17. RADIO BUTTON =====
+                Sirf ek option select kar sakte ho, isliye SAME name use hota hai group banane ke liye
+            -->
+
+
+            <p>Radio buttons (single select):</p>
+            <input type="radio" id="male" name="gender" value="male" class="chk">
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+
+            <input type="radio" id="other" name="gender" value="other" class="chk">
+            <label for="other">Other</label>
+            <br><br>
+
+            <!-- 
+                ===== 18. SELECT (dropdown) =====
+                Dropdown list, option tags ke sath
+            -->
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="india">India</option>
+                <option value="usa">USA</option>
+                <option value="uk">UK</option>
+            </select><br><br>
+
+            <!-- 
+                ===== RANGE =====
+                Slider input, min/max/step define kar sakte ho
+            -->
+            <label for="volume">Volume:</label>
+            <input type="range" id="volume" name="volume" min="0" max="100" step="1"><br><br>
+
+            <!-- 
+                ===== TEXTAREA =====
+                Multi-line text input ke liye
+            -->
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="40"
+                placeholder="Apna message likho..."></textarea><br><br>
+
+            <!-- 
+                ===== BUTTON ELEMENT =====
+                type="submit" -> form submit karta hai
+                type="reset"  -> form ko clear/reset karta hai
+                type="button" -> normal button, JS se control hota hai
+            -->
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+            <button type="button" onclick="alert('Button clicked!')">Click Me (JS Alert)</button>
+
+        </form>
+    </section>
+
+    <!-- End of guide -->
+    <footer style="text-align:center; margin-top:30px; color:#888;">
+        <hr>
+        <p>&copy; 2026 HTML Complete Guide - Made with comments for learning</p>
+    </footer>
+
+</body>
+
+</html>

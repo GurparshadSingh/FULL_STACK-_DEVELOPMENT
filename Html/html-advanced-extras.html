@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!-- 
+    ==========================================================
+    HTML ADVANCED EXTRAS - Part 2 (Recommended Additions)
+    ==========================================================
+    Ye file pehli "html-complete-guide.html" ka EXTENSION hai.
+    Isme wo topics hain jo commonly saath me puche jaate hain
+    lekin part 1 me nahi the.
+
+    Topics covered:
+    1. Global Attributes (id, class, style, data-*, contenteditable, draggable, tabindex)
+    2. <link> tag (CSS, favicon)
+    3. <meta> tags in depth (SEO, description, keywords, Open Graph)
+    4. Void / Self-closing elements (concept)
+    5. <video> and <audio> tags
+    6. <iframe>
+    7. <details> and <summary>
+    8. <progress> and <meter>
+    9. <datalist> (autocomplete)
+    10. <fieldset> and <legend>
+    11. Input attributes: required, disabled, readonly, autofocus
+    12. HTML5 input types: date, time, color, file, search, tel, url, number
+    13. colspan / rowspan in tables
+    ==========================================================
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+        ===== 3. META TAGS IN DEPTH =====
+        meta tags SEO aur social sharing ke liye use hote hain.
+        Ye sab <head> ke andar likhe jaate hain aur screen pe DIKHTE NAHI.
+    -->
+    <meta name="description" content="Ye page HTML ke advanced aur extra tags sikhata hai, comments ke sath.">
+    <meta name="keywords" content="HTML, tags, video, audio, iframe, meta, forms">
+    <meta name="author" content="HTML Guide">
+
+    <!-- Open Graph tags - jab link WhatsApp/Facebook pe share karo to preview banane ke liye -->
+    <meta property="og:title" content="HTML Advanced Extras">
+    <meta property="og:description" content="Advanced HTML tags with examples">
+    <meta property="og:image" content="https://via.placeholder.com/300">
+
+    <title>HTML Advanced Extras</title>
+
+    <!-- 
+        ===== 2. <link> TAG =====
+        link tag external resources ko HTML se connect karta hai.
+        rel="stylesheet" -> CSS file link karne ke liye
+        rel="icon"       -> favicon (tab ke icon) ke liye
+        Ye bhi VOID element hai (closing tag nahi hota)
+    -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        section {
+            border: 1px solid #ccc;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #999;
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML Advanced Extras (Part 2)</h1>
+    <p>Ye file pehli guide ka extension hai — recommended aur commonly-used extra topics.</p>
+
+    <!-- 
+        ===== 1. GLOBAL ATTRIBUTES =====
+        Ye attributes LAGBHAG HAR HTML element pe lagaye ja sakte hain.
+        id            -> unique identifier
+        class         -> group identifier (styling/JS ke liye)
+        style         -> inline CSS
+        data-*        -> custom data store karne ke liye (JS me access hota hai)
+        contenteditable -> user is element ko browser me hi edit kar sake
+        draggable     -> element ko drag karne layak banata hai
+        tabindex      -> keyboard "Tab" key se navigate karne ka order set karta hai
+    -->
+    <section>
+        <h2>1. Global Attributes</h2>
+        <p id="demo1" class="note" style="color:blue;" data-user-id="101" tabindex="1">
+            Ye paragraph id, class, style, data-user-id aur tabindex - sab use kar raha hai.
+        </p>
+        <p contenteditable="true" style="border:1px dashed #999; padding:5px;">
+            Ye text EDIT kiya ja sakta hai (click karke try karo) - contenteditable="true" ki wajah se.
+        </p>
+        <img src="https://via.placeholder.com/80" draggable="true" alt="Drag me">
+        <span> - Is image ko drag karke try karo (draggable="true")</span>
+    </section>
+
+    <!-- 
+        ===== 4. VOID / SELF-CLOSING ELEMENTS =====
+        Kuch elements ke closing tag nahi hote, kyunki inme content nahi hota,
+        sirf attributes hote hain.
+        Examples: <img>, <br>, <hr>, <input>, <meta>, <link>, <source>, <track>
+    -->
+    <section>
+        <h2>4. Void / Self-Closing Elements</h2>
+        <p>Ye elements khud "band" ho jaate hain, inko separate closing tag ki zaroorat nahi:</p>
+        <code>&lt;img&gt;, &lt;br&gt;, &lt;hr&gt;, &lt;input&gt;, &lt;meta&gt;, &lt;link&gt;</code>
+        <p>Example neeche dikhaya gaya hai:</p>
+        Line 1 <br> Line 2
+        <hr>
+    </section>
+
+    <!-- 
+        ===== 5. VIDEO AND AUDIO TAGS =====
+        video -> video file play karne ke liye
+        audio -> audio file play karne ke liye
+        controls -> play/pause/volume controls dikhata hai
+        autoplay, loop, muted -> extra behavior control karte hain
+        source tag -> multiple formats de sakte ho (browser jo support kare wo use karega)
+    -->
+    <section>
+        <h2>5. Video and Audio Tags</h2>
+
+        <h4>Video Example:</h4>
+        <video width="320" controls>
+            <source src="movie.mp4" type="video/mp4">
+            <source src="movie.ogg" type="video/ogg">
+            Aapka browser video tag support nahi karta.
+        </video>
+
+        <h4>Audio Example:</h4>
+        <audio controls>
+            <source src="audio.mp3" type="audio/mpeg">
+            <source src="audio.ogg" type="audio/ogg">
+            Aapka browser audio tag support nahi karta.
+        </audio>
+    </section>
+
+    <!-- 
+        ===== 6. IFRAME =====
+        iframe ek doosre webpage ko current page ke andar embed karta hai.
+        YouTube video, Google Maps embed karne ke liye common hai.
+        src -> jo page embed karna hai uska URL
+        width/height -> size
+    -->
+    <section>
+        <h2>6. Iframe</h2>
+        <iframe src="https://www.wikipedia.org" width="100%" height="200" title="Wikipedia embed"></iframe>
+        <p>Upar Wikipedia ka page iframe ke andar embed kiya gaya hai.</p>
+    </section>
+
+    <!-- 
+        ===== 7. DETAILS AND SUMMARY =====
+        Collapsible/expandable content banane ke liye.
+        summary -> wo heading jo hamesha dikhti hai (click karne layak)
+        details ke andar jo bhi hai wo click karne pe expand/collapse hota hai
+        Isme koi JavaScript ki zaroorat nahi padti!
+    -->
+    <section>
+        <h2>7. Details and Summary</h2>
+        <details>
+            <summary>Click karke expand karo (FAQ jaisa)</summary>
+            <p>Ye content chupa hua tha, summary pe click karne se dikha.</p>
+        </details>
+    </section>
+
+    <!-- 
+        ===== 8. PROGRESS AND METER =====
+        progress -> task completion dikhane ke liye (jaise download %)
+        meter -> ek known range ke andar value dikhane ke liye (jaise disk usage)
+    -->
+    <section>
+        <h2>8. Progress and Meter</h2>
+        <label for="prog">Download Progress:</label>
+        <progress id="prog" value="70" max="100"></progress> 70%
+        <br><br>
+        <label for="met">Disk Usage:</label>
+        <meter id="met" value="6" min="0" max="10"></meter> 6 out of 10
+    </section>
+
+    <!-- 
+        ===== 9. DATALIST (Autocomplete) =====
+        input ko ek predefined list ke sath jodta hai, jisme se user suggestions dekh sakta hai
+        lekin apna khud ka value bhi type kar sakta hai (select se alag hai).
+    -->
+    <section>
+        <h2>9. Datalist (Autocomplete Suggestions)</h2>
+        <label for="browser">Apna favorite browser choose/type karo:</label>
+        <input list="browsers" id="browser" name="browser">
+        <datalist id="browsers">
+            <option value="Chrome">
+            <option value="Firefox">
+            <option value="Edge">
+            <option value="Safari">
+        </datalist>
+    </section>
+
+    <!-- 
+        ===== 10. FIELDSET AND LEGEND =====
+        Form ke related fields ko group karne ke liye use hota hai.
+        fieldset -> ek box banata hai
+        legend -> us box ka title/heading
+    -->
+    <section>
+        <h2>10. Fieldset and Legend</h2>
+        <form>
+            <fieldset>
+                <legend>Personal Details</legend>
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname"><br><br>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname">
+            </fieldset>
+        </form>
+    </section>
+
+    <!-- 
+        ===== 11. INPUT ATTRIBUTES: required, disabled, readonly, autofocus =====
+        required   -> field bharna COMPULSORY hai, bina bhare form submit nahi hoga
+        disabled   -> field pe click/type nahi kar sakte, aur uska data bhi submit NAHI hota
+        readonly   -> dikh raha hai, edit nahi kar sakte, LEKIN uska data submit HOTA hai
+        autofocus  -> page load hote hi cursor automatically us field pe chala jata hai
+    -->
+    <section>
+        <h2>11. Input Attributes (required, disabled, readonly, autofocus)</h2>
+        <form>
+            <label>Required field: </label>
+            <input type="text" required placeholder="Ye bharna zaroori hai"><br><br>
+
+            <label>Disabled field: </label>
+            <input type="text" disabled value="Ye edit nahi ho sakta"><br><br>
+
+            <label>Readonly field: </label>
+            <input type="text" readonly value="Ye sirf dekh sakte ho"><br><br>
+
+            <label>Autofocus field: </label>
+            <input type="text" autofocus placeholder="Page load hote hi yaha focus aayega">
+        </form>
+    </section>
+
+    <!-- 
+        ===== 12. HTML5 INPUT TYPES =====
+        HTML5 me bahut saare specialized input types aaye jo browser khud validate/UI deta hai.
+    -->
+    <section>
+        <h2>12. HTML5 Input Types</h2>
+        <form>
+            <label>Date: </label>
+            <input type="date" name="date"><br><br>
+
+            <label>Time: </label>
+            <input type="time" name="time"><br><br>
+
+            <label>Color: </label>
+            <input type="color" name="color"><br><br>
+
+            <label>File Upload: </label>
+            <input type="file" name="file"><br><br>
+
+            <label>Search: </label>
+            <input type="search" name="search" placeholder="Search karo..."><br><br>
+
+            <label>Telephone: </label>
+            <input type="tel" name="tel" placeholder="+91 9876543210"><br><br>
+
+            <label>Website URL: </label>
+            <input type="url" name="url" placeholder="https://example.com"><br><br>
+
+            <label>Number: </label>
+            <input type="number" name="number" min="1" max="10">
+        </form>
+    </section>
+
+    <!-- 
+        ===== 13. COLSPAN / ROWSPAN IN TABLES =====
+        colspan -> ek cell ko horizontally multiple columns tak phaila deta hai
+        rowspan -> ek cell ko vertically multiple rows tak phaila deta hai
+    -->
+    <section>
+        <h2>13. Colspan / Rowspan in Tables</h2>
+        <table>
+            <tr>
+                <th colspan="2">Student Info (colspan example)</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>Raj</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Subjects</td>
+                <td>Math</td>
+            </tr>
+            <tr>
+                <td>Science</td>
+            </tr>
+        </table>
+    </section>
+
+    <footer style="text-align:center; margin-top:30px; color:#888;">
+        <hr>
+        <p>&copy; 2026 HTML Advanced Extras - Companion file to html-complete-guide.html</p>
+    </footer>
+
+    <section>
+        <table border="2">
+
+            <tr>
+                <th>Sno.</th>
+                <th colspan="2">Tech and Demand</th>
+                
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>html</td>
+                <td>mod</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>css</td>
+                <td>high</td>
+            </tr>
+        </table>
+    </section>
+
+</body>
+
+</html>
