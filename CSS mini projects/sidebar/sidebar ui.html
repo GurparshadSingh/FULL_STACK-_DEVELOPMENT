@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+
+<body>
+   
+    <div class="container">
+        <div class="glass-card">
+            Gurparshad Singh
+        </div>
+    </div>
+
+    <div>
+        <button class="btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="sidebar">
+
+
+        <ul type="none">
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
+            <li><a href="#"><i class="fa-solid fa-heart"></i> Favourite</a></li>
+            <li><a href="#"><i class="fa-solid fa-plus"></i> Host</a></li>
+            <li><a href="#"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+
+
+
+            <span id="fl">Follow Us</span>
+
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        const sidebar = document.querySelector(".sidebar")
+        const btn = document.querySelector(".btn");
+        btn.addEventListener("click", () => {
+            sidebar.classList.toggle("active");
+            btn.classList.toggle("active");
+        });
+    </script>
+</body>
+
+</html>

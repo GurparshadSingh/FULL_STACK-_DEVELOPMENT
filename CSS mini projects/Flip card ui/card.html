@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+</head>
+
+<body>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            color: azure;
+        }
+
+        section {
+            background-color: black;
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: perspective(800px);
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            height: 240px;
+            width: 240px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+            transform: translate(-150px, -100px);
+        }
+
+        section::after {
+            content: "";
+            position: absolute;
+            height: 240px;
+            width: 240px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+            transform: translate(150px, 100px);
+        }
+
+        .container {
+            position: relative;
+            height: 225px;
+            width: 375px;
+            z-index: 100;
+            transition-duration: 0.6s;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .container:hover {
+            transform: rotateY(180deg);
+
+        }
+
+        .card {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .front-face .logo img {
+            width: 48px;
+            margin-right: 10px;
+        }
+
+
+        .front-face .chip {
+            width: 45px;
+        }
+
+        .front-face .logo {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .front-face header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px;
+        }
+
+        .front-face .card-details {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 25px;
+        }
+
+        h5 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 400
+        }
+
+        h6 {
+            margin: 0;
+            font-size: 10px;
+            font-weight: 400;
+        }
+
+        .number {
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .name {
+            margin-top: 20px;
+        }
+
+        .card.back-face {
+            border: none;
+            padding: 15px 25px 25px 25px;
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+
+        .card.back-face h6 {
+            font-size: 8px;
+        }
+
+        .card.back-face .magnetic-strip {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            height: 45px;
+            width: 100%;
+            background-color: #000;
+        }
+
+        .signature {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 80px;
+            height: 40px;
+            width: 85%;
+            border-radius: 6px;
+            background: repeating-linear-gradient(#fff, #fff 3px, #efefef 3px, #efefef 9px);
+        }
+
+        .signature i {
+            color: #000;
+            font-size: 12px;
+            margin-right: -30px;
+            padding: 4px 6px;
+            background-color: #fff;
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .back-face h5 {
+            font-size: 8px;
+            margin-top: 15px;
+        }
+    </style>
+
+    <section>
+        <div class="container">
+            <div class="card front-face">
+                <header>
+                    <span class="logo">
+                        <img src="./logo.png" alt="">
+                        <h5>Master card</h5>
+                    </span>
+                    <img src="./chip.png" alt="" class="chip">
+                </header>
+
+                <div class="card-details">
+                    <div class="name-number">
+                        <h6>Card Number</h6>
+                        <h5 class="number">1234 1234 1234 1234</h5>
+                        <h5 class="name">Name goes here</h5>
+                    </div>
+
+                    <div class="valid-date">
+                        <h6>Valid Thru</h6>
+                        <h5>13/32</h5>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="card back-face">
+                <h6>For customer service call 00-000-000-000 or email at mastercard@gmail.com</h6>
+                <span class="magnetic-strip"></span>
+                <div class="signature"><i>005</i></div>
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, facilis reprehenderit! Tempore
+                    aliquam tenetur fugiat minus dignissimos a deserunt numquam optio explicabo vero. Animi suscipit
+                    aperiam i corrupti. Tempore deleniti, fuga
+                    culpa quos numquam consequunuptatem nisi, ex enim expedita velit?
+                </h5>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
