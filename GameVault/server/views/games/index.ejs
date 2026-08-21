@@ -388,6 +388,35 @@
 
     </div>
 
+    <div class="pagination mt-5 justify-content-center">
+        <% if(currPage>1){ %>
+            <li class="page-item">
+                <a class="page-link" href="/api/games?page=<%= currPage-1 %>">
+                    Previous
+                </a>
+            </li>
+            <% } %>
+
+                <% for (let i=1; i <=totalPages; i++) { %>
+
+                    <li class="page-item <%= currPage === i ? 'active' : '' %>">
+                        <a class="page-link" href="/api/games?page=<%= i %>">
+                            <%= i %>
+                        </a>
+                    </li>
+
+                    <% } %>
+
+                        <% if (currPage < totalPages) { %>
+                            <li class="page-item">
+                                <a class="page-link" href="/api/games?page=<%= currPage + 1 %>">
+                                    Next
+                                </a>
+                            </li>
+                            <% } %>
+                            
+    </div>
+
 
 
     <script>
@@ -431,10 +460,6 @@
             }
 
         }
-
-
-
-
 
 
 

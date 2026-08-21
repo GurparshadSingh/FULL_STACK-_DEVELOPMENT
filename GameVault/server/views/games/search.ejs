@@ -27,7 +27,8 @@
             font-size: 28px;
             font-weight: 800;
         }
-        .brand:hover{
+
+        .brand:hover {
             color: #a855f7;
             font-size: 28px;
             font-weight: 800;
@@ -212,6 +213,35 @@
 
                 </div>
                 <% } %>
+    </div>
+    <div class="pagination mt-5 justify-content-centre">
+        <% if (currPage> 1) { %>
+            <li class="page-item">
+                <a class="page-link" href="/api/games/genre?genre=<%= genre %>&page=<%= currPage - 1 %>">
+                    Previous
+                </a>
+            </li>
+            <% } %>
+                <% for (let i=1; i <=totalPages; i++) { %>
+
+                    <li class="page-item <%= currPage === i ? 'active' : '' %>">
+
+                        <a class="page-link" href="/api/games/genre?genre=<%= genre %>&page=<%= i %>">
+                            <%= i %>
+                        </a>
+
+                    </li>
+
+                    <% } %>
+
+                        <% if (currPage < totalPages) { %>
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="/api/games/genre?genre=<%= genre %>&page=<%= currPage + 1 %>">
+                                    Next
+                                </a>
+                            </li>
+                            <% } %>
     </div>
 
 </body>

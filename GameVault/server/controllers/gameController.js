@@ -19,28 +19,20 @@ exports.createGame = async (req, res) => {
 }
 
 exports.getAllGames = async (req, res) => {
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //     window.location.href = "/login";
-    // }
-    const games = await Game.find();
-    // console.log(games);
+
+    const page = Number(req.query.page) || 1;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+    const totalGames = await Game.countDocuments();
+    const totalPages = Math.ceil(totalGames / limit);
+
+    const games = await Game.find().skip(skip).limit(limit);
+
+
     res.render("games/index", {
-        games, isLoggedIn: !!req.cookies.token
+        games, currPage: page, totalPages, isLoggedIn: !!req.cookies.token
     });
-    // try {
-    //     const games = await Game.find();
-    //     res.status(200).json({
-    //         success: true,
-    //         count: games.length,
-    //         games
-    //     });
-    // } catch (err) {
-    //     res.status(500).json({
-    //         success: false,
-    //         message: err.message
-    //     });
-    // }
+
 };
 
 exports.getSingleGame = async (req, res) => {
@@ -63,8 +55,9 @@ exports.getSearchedGame = async (req, res) => {
                 $regex: query,
                 $options: "i"
             }
-        });
-        res.render("games/search", { games });
+        })
+
+        res.render("games/search", { games, });
     } catch (err) {
         res.status(500).send(err.message);
     }
@@ -74,10 +67,26 @@ exports.getGenreGames = async (req, res) => {
     try {
         const genre = req.query.genre;
 
-        const games = await Game.find({
+        const page = Number(req.query.page) || 1;
+        const limit = 10;
+        const skip = (page - 1) * limit;
+
+        const filter = {
             genre: genre
-        })
-        res.render("games/index", { games, isLoggedIn: !!req.cookies.token });
+        };
+
+        const totalGames = await Game.countDocuments(filter);
+        const totalPages = Math.ceil(totalGames / limit);
+
+
+
+        const games = await Game.find(filter)
+            .skip(skip)
+            .limit(limit)
+
+        res.render("games/index", {
+            games, currPage: page, totalPages, genre: genre, isLoggedIn: !!req.cookies.token
+        });
 
     } catch (err) {
         res.status(500).send(err.message);
