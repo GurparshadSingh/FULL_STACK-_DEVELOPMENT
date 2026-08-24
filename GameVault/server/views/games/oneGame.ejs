@@ -134,12 +134,260 @@
             color: #facc15;
             font-size: 18px;
         }
+
+
+
+        .review-form {
+            background: #111827;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+        }
+
+        .review-form-header {
+            margin-bottom: 25px;
+        }
+
+        .review-form-header h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+
+            background: linear-gradient(90deg,
+                    #a855f7,
+                    #06b6d4);
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .review-form-header p {
+            color: #9ca3af;
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+
+
+        .rating-stars {
+            display: flex;
+            gap: 6px;
+        }
+
+        .rating-stars button {
+            background: transparent;
+            border: none;
+            color: #374151;
+            font-size: 32px;
+            cursor: pointer;
+            padding: 0;
+
+            transition: 0.2s;
+        }
+
+        .rating-stars button:hover {
+            color: #facc15;
+            transform: scale(1.15);
+        }
+
+        .rating-stars button.active {
+            color: #facc15;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 6px;
+            color: #6b7280;
+        }
+
+
+
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+
+            background: #0b1020;
+            color: white;
+
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+
+            padding: 14px;
+            font-family: inherit;
+            font-size: 15px;
+
+            resize: vertical;
+
+            outline: none;
+
+            transition: 0.25s;
+        }
+
+        .form-group textarea::placeholder {
+            color: #6b7280;
+        }
+
+        .form-group textarea:focus {
+            border-color: #a855f7;
+
+            box-shadow:
+                0 0 0 2px rgba(168, 85, 247, 0.12)
+        }
+
+        .character-count {
+            text-align: right;
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        /* 🚀 Submit */
+
+        .submit-review {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .submit-review:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 18px rgba(124, 58, 237, 0.45);
+        }
+
+
+        .reviews-section {
+            background: #111827;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 25px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .reviews-header h2 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 700;
+
+            background: linear-gradient(90deg,
+                    #a855f7,
+                    #06b6d4);
+
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        #reviewCount {
+            color: #9ca3af;
+        }
+
+        .review-card {
+            background: #0b1020;
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .review-user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .review-username {
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .review-stars {
+            color: #facc15;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .review-comment {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .no-reviews {
+            text-align: center;
+            color: #6b7280;
+            padding: 30px;
+        }
+
+
+        .review-user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .review-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-edit {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: #a855f7;
+        }
+
+        .btn-delete {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #ef4444;
+        }
     </style>
 
 </head>
 
 <body>
-    <script>
+    <!-- <script>
         async function addToWishlist(gameId) {
             const token = localStorage.getItem("token");
 
@@ -153,7 +401,7 @@
             alert(data.message);
 
         }
-    </script>
+    </script> -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand brand" href="/">🎮 GameVault</a>
@@ -248,26 +496,368 @@
 
         </div>
     </div>
+
+
+    <div class="review-form">
+
+        <div class="review-form-header">
+            <h3>Write a Review</h3>
+            <p>Share your experience with this game</p>
+        </div>
+
+        <form>
+
+            <!-- Rating -->
+            <div class="form-group">
+                <label>Rating</label>
+
+                <div class="rating-stars">
+                    <button type="button">★</button>
+                    <button type="button">★</button>
+                    <button type="button">★</button>
+                    <button type="button">★</button>
+                    <button type="button">★</button>
+                </div>
+
+                <small>Click a star to rate</small>
+            </div>
+
+            <!-- Comment -->
+            <div class="form-group">
+                <label for="reviewComment">Your Review</label>
+
+                <textarea id="reviewComment" name="comment" rows="5" maxlength="500"
+                    placeholder="What did you think about this game?" required></textarea>
+
+                <div class="character-count">
+                    0 / 500
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-game submit-review">
+                Submit Review
+            </button>
+
+        </form>
+
+    </div>
+    <div class="reviews-section">
+
+        <div class="reviews-header">
+            <h2>Player Reviews</h2>
+            <span id="reviewCount">0 Reviews</span>
+        </div>
+
+        <div id="reviewsContainer">
+            <!-- Reviews yahan JavaScript se aayenge -->
+        </div>
+
+    </div>
+
     <script>
 
-        async function addToWishlist(gameId) {
 
-            const token = localStorage.getItem("token");
+        async function toggleWishList(button, gameId) {
+            const isWishlisted = button.dataset.wishlisted === "true";
 
-            if (!token) {
-                alert("Please Login First");
-                window.location.href = "/login";
+            try {
+                let response;
+
+                if (!isWishlisted) {
+                    response = await fetch(`/api/users/wishlist/${gameId}`, {
+                        method: "POST"
+                    })
+                } else {
+                    response = await fetch(`/api/users/wishlist/${gameId}`, {
+                        method: "DELETE"
+                    })
+                }
+
+                const data = await response.json();
+                if (data.success) {
+
+                    if (!isWishlisted) {
+
+                        button.innerHTML = "❤️ In Wishlist";
+                        button.dataset.wishlisted = "true";
+
+                    } else {
+
+                        button.innerHTML = "🤍 Add to Wishlist";
+                        button.dataset.wishlisted = "false";
+
+                    }
+                } else {
+                    alert(data.message);
+                }
+            } catch (err) {
+                alert("something went wrong", err);
+            }
+
+        }
+
+
+
+        let selectedRating = 0;
+        const stars = document.querySelectorAll(".rating-stars button");
+
+        stars.forEach((star, index) => {
+            star.addEventListener("click", () => {
+                selectedRating = index + 1;
+                stars.forEach((star, i) => {
+                    if (i < selectedRating) {
+                        star.classList.add("active");
+                    } else {
+                        star.classList.remove("active");
+                    }
+                });
+            })
+        })
+
+
+        const form = document.querySelector(".review-form form");
+
+        form.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+            const comment = document.querySelector("#reviewComment").value;
+
+            if (selectedRating === 0) {
+                alert("Please select a rating");
                 return;
             }
 
-            const response = await fetch(`/api/users/wishlist/${gameId}`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token}`
+            try {
+
+                const response = await fetch(
+                    `http://localhost:5000/api/reviews/games/<%= game._id %>`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        credentials: "include",
+
+                        body: JSON.stringify({
+                            rating: selectedRating,
+                            comment: comment
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message);
                 }
+
+                console.log(data);
+
+                alert("Review added successfully!");
+
+                form.reset();
+
+                selectedRating = 0;
+
+                stars.forEach(star => {
+                    star.classList.remove("active");
+                });
+
+            } catch (error) {
+
+                console.error(error);
+                alert(error.message);
+
+            }
+
+        });
+
+
+        async function loadReviews() {
+
+            try {
+
+                const response = await fetch(
+                    `/api/reviews/games/<%= game._id %>`
+                );
+
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message);
+                }
+
+                console.log(data);
+
+                displayReviews(data.reviews);
+
+                document.querySelector("#reviewCount").textContent =
+                    `${data.count} Reviews`;
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+        }
+
+        let allReviews = [];
+
+        function displayReviews(reviews) {
+
+            allReviews = reviews;
+
+
+            console.log("ALL REVIEWS:", allReviews);
+
+
+            const container =
+                document.querySelector("#reviewsContainer");
+
+            container.innerHTML = "";
+
+            if (reviews.length === 0) {
+
+                container.innerHTML = `
+                    <div class="no-reviews">
+                        No reviews yet. Be the first to review this game! 🎮
+                    </div>
+                `;
+
+                return;
+            }
+
+            reviews.forEach(review => {
+
+                const stars = "★".repeat(review.rating) +
+                    "☆".repeat(5 - review.rating);
+
+                container.innerHTML += `
+                    <div class="review-card">
+        
+                        <div class="review-user">
+        
+                            <span class="review-username">
+                                👤 ${review.user.username}
+                            </span>
+        
+                        </div>
+
+
+                        <div class="review-actions">
+                            <button
+                                class="btn-edit"
+                                onclick="editReview('${review._id}')">
+                                Edit
+                            </button>
+    
+                            <button
+                                class="btn-delete"
+                                onclick="deleteReview('${review._id}')">
+                                Delete
+                            </button>
+                        </div>
+
+        
+                        <div class="review-stars">
+                            ${stars}
+                        </div>
+        
+                        <p class="review-comment">
+                            ${review.comment}
+                        </p>
+        
+                    </div>
+                `;
+
             });
-            const data = await response.json();
-            alert(data.message);
+        }
+        loadReviews();
+
+        function testEdit() {
+            console.log("EDIT BUTTON CLICKED");
+            alert("Edit clicked");
+        }
+
+        async function editReview(reviewId) {
+
+            const review = allReviews.find(review => {
+                return review._id.toString() === reviewId.toString();
+            })
+
+            if (!review) {
+                alert("Review not found");
+                return;
+            }
+
+            const rating = prompt("enter rating from 0-5", review.rating);
+            if (rating === null) {
+                return;
+            }
+
+            const comment = prompt("Edit your review", review.comment);
+            if (comment === null) {
+                return;
+            }
+
+            if (rating > 5 || rating < 1) {
+                alert("Rating must be within 1-5");
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/reviews/${reviewId}`, {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        rating: Number(rating),
+                        comment: comment
+                    })
+                })
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message);
+                }
+
+                loadReviews();
+            } catch (error) {
+                console.log(error);
+                alert(error.message);
+            }
+        }
+
+        async function deleteReview(reviewId) {
+            try {
+                const confirmDelete = confirm("are you sure you want to delete");
+                if (!confirmDelete) {
+                    return;
+                }
+
+                const response = await fetch(
+                    `/api/reviews/${reviewId}`, {
+                    method: "DELETE",
+                }
+
+                )
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message);
+                }
+                alert("review deleted successfully");
+                loadReviews();
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+
         }
     </script>
 </body>

@@ -7,7 +7,7 @@ const { isAdmin } = require("../middlewares/adminMiddleware");
 
 router.post("/", protect, isAdmin, createGame);
 router.get("/", getAllGames);
-router.get("/search",protect ,getSearchedGame);
+router.get("/search", protect, getSearchedGame);
 router.get("/genre", getGenreGames);
 router.get("/:id", getSingleGame);
 
