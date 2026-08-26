@@ -29,6 +29,7 @@ exports.registerUser = async (req, res) => {
         });
 
         await user.save();
+        res.redirect("/users/login");
 
         res.status(201).json({
             success: true,

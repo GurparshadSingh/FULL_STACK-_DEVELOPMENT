@@ -210,7 +210,7 @@
 
                     Already have an account?
 
-                    <a href="/login">Login</a>
+                    <a href="/api/users/login">Login</a>
 
                 </p>
 
@@ -255,7 +255,7 @@
                 if (data.success) {
 
                     alert("Registration Successful 🎉");
-                    window.location.href = "api/users/login";
+                    window.location.href = "/api/users/login";
                 }
                 else {
                     alert(data.message);

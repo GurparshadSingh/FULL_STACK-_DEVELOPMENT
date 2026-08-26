@@ -10,6 +10,7 @@ const userRoutes = require("./routes/userRoutes");
 const bcrypt = require("bcrypt");
 const gameRoutes = require("./routes/gameRoutes.js");
 const reviewRoutes = require("./routes/reviewRoutes.js");
+const adminRoutes = require("./routes/adminRoutes.js");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
@@ -35,6 +36,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/games", gameRoutes);
 
 app.use("/api/reviews", reviewRoutes);
+
+app.use("/admin", adminRoutes)
 
 app.get('/', (req, res) => {
     res.send('Welcome to GameVault API!');

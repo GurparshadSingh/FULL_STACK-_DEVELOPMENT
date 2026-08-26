@@ -1,6 +1,7 @@
+const game = require("../models/game");
 const Game = require("../models/game");
 const User = require("../models/user.js");
-
+// const admin_check = require("../middlewares/adminmiddleware.js")
 exports.createGame = async (req, res) => {
     try {
         const game = await Game.create(req.body);
@@ -29,8 +30,14 @@ exports.getAllGames = async (req, res) => {
     const games = await Game.find().skip(skip).limit(limit);
 
 
+    const isAdmin = req.user && req.user.role === "admin";
+
     res.render("games/index", {
-        games, currPage: page, totalPages, isLoggedIn: !!req.cookies.token
+        games,
+        currPage: page,
+        totalPages,
+        isLoggedIn: !!req.cookies.token,
+        isAdmin
     });
 
 };
@@ -93,3 +100,26 @@ exports.getGenreGames = async (req, res) => {
     }
 }
 
+
+
+exports.deleteGame = async (req, res) => {
+    try {
+        const game = await Game.findByIdAndDelete(req.params.id);
+        if (!game) {
+            return res.status(404).json({
+                success: false,
+                message: "Game not found"
+            })
+        }
+
+        res.json({
+            success: true,
+            message: "Game deleted successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+    }
+}
